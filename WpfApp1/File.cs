@@ -16,20 +16,21 @@ namespace WpfApp1
             Students students = new Students();
 
             XmlDataDocument xmldoc = new XmlDataDocument();
-            FileStream fs = new FileStream(@"D:\OwnCloud\Dev\StudentTestWPF\WpfApp1\WpfApp1\students.xml", FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
             xmldoc.Load(fs);
             XmlNodeList xmlnodes = xmldoc.GetElementsByTagName("Student");
             foreach (XmlNode xn in xmlnodes)
             {
                 Student student = new Student();
+                student.ID = Int32.Parse(xn.Attributes["Id"].Value);
                 foreach (XmlNode node in xn.ChildNodes)
                 {
                     switch (node.Name.ToString())
                     {
                         case "FirstName":
                             student.FirstName = node.InnerText; break;
-                        case "LastName":
-                            student.LastName = node.InnerText; break;
+                        case "Last":
+                            student.Last = node.InnerText; break;
                         case "Age":
                             student.AgeStudent = Int32.Parse(node.InnerText); break;
                         case "Gender":
@@ -54,9 +55,9 @@ namespace WpfApp1
                 for(int i = 0; i < students.Count; i++)
                 {
                     writer.WriteStartElement("Student");
-                    writer.WriteAttributeString("ID", i.ToString());
+                    writer.WriteAttributeString("Id", i.ToString());
                     writer.WriteElementString("FirstName", students[i].FirstName);
-                    writer.WriteElementString("LastName", students[i].LastName);
+                    writer.WriteElementString("Last", students[i].Last);
                     writer.WriteElementString("Age", students[i].AgeStudent.ToString());
                     writer.WriteElementString("Gender", students[i].GenderStudent.ToString());
 

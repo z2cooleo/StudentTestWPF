@@ -35,6 +35,14 @@ namespace WpfApp1
         {
             students.Add(student as Student);
         }
+        public void Remove(Student student)
+        {
+            students.Remove(student);
+        }
+        public void Remove(int indexStudentInstance)
+        {
+            students.RemoveAt(indexStudentInstance);
+        }
         IEnumerator IEnumerable.GetEnumerator()
         {
             return students.GetEnumerator();

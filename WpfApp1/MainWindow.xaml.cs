@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Xml.Serialization;
 using System.Globalization;
+using System.Collections.ObjectModel;
 
 namespace WpfApp1
 {
@@ -30,12 +31,33 @@ namespace WpfApp1
         Students students;
         public MainWindow()
         {
-            students = File.GetStudents(@"D:\OwnCloud\Dev\StudentTestWPF\WpfApp1\WpfApp1\students.xml");
+            students = File.GetStudents(@"G:\Dev\C#\StudentTestWPF\WpfApp1\students1.xml");
             InitializeComponent();
         }
-        private void init(object sender, EventArgs e)
+        private void Init(object sender, EventArgs e)
         {
             StudentsDataGrid.ItemsSource = students;
+        }
+
+        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Student st = StudentsDataGrid.SelectedItem as Student;
+            if (st != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Do you want to remove this row?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    students.Remove(st);
+                    StudentsDataGrid.ItemsSource = null;
+                    StudentsDataGrid.ItemsSource = students;
+                    File.SetStudent(students, @"G:\Dev\C#\StudentTestWPF\WpfApp1\students1.xml");
+                }
+            }
+        }
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            changeInstance setPage = new changeInstance();
+            this.Content = setPage;
         }
     }
     public class AddConverter : IMultiValueConverter
