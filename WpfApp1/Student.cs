@@ -8,18 +8,18 @@ namespace WpfApp1
 {
     public class Student
     {
-        public System.String firstName { get; set; }
-        public System.String lastName { get; set; }
+        public System.String FirstName { get; set; }
+        public System.String LastName { get; set; }
         private System.Int32 ageStudent;
-        public System.Int32 genderStudent { get; set; } // 0-male, 1-female
+        public System.Int32 GenderStudent { get; set; } // 0-male, 1-female
 
         public Student() { }
         public Student(string firstName, string lastName, int ageStudent, int genderStudent)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
+            this.FirstName = firstName;
+            this.LastName = lastName;
             this.ageStudent = ageStudent;
-            this.genderStudent = genderStudent;
+            this.GenderStudent = genderStudent;
         } 
         
         public int AgeStudent

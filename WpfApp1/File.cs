@@ -27,13 +27,13 @@ namespace WpfApp1
                     switch (node.Name.ToString())
                     {
                         case "FirstName":
-                            student.firstName = node.InnerText; break;
+                            student.FirstName = node.InnerText; break;
                         case "LastName":
-                            student.lastName = node.InnerText; break;
+                            student.LastName = node.InnerText; break;
                         case "Age":
                             student.AgeStudent = Int32.Parse(node.InnerText); break;
                         case "Gender":
-                            student.genderStudent = Int32.Parse(node.InnerText); break;
+                            student.GenderStudent = Int32.Parse(node.InnerText); break;
                     }
                 }
                 students.Add(student);                
@@ -55,10 +55,10 @@ namespace WpfApp1
                 {
                     writer.WriteStartElement("Student");
                     writer.WriteAttributeString("ID", i.ToString());
-                    writer.WriteElementString("FirstName", students[i].firstName);
-                    writer.WriteElementString("LastName", students[i].lastName);
+                    writer.WriteElementString("FirstName", students[i].FirstName);
+                    writer.WriteElementString("LastName", students[i].LastName);
                     writer.WriteElementString("Age", students[i].AgeStudent.ToString());
-                    writer.WriteElementString("Gender", students[i].genderStudent.ToString());
+                    writer.WriteElementString("Gender", students[i].GenderStudent.ToString());
 
                     writer.WriteEndElement();
                 }
