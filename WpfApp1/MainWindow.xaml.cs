@@ -56,6 +56,12 @@ namespace WpfApp1
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
+            changeInstance setPage = new changeInstance(2);
+            this.NavigationService.Navigate(setPage);            
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
             changeInstance setPage = new changeInstance();
             this.Content = setPage;
         }

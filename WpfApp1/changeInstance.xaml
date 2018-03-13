@@ -18,19 +18,19 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <Label Content="Firstname" Height="26"/>
-            <TextBox TextWrapping="Wrap" Text="TextBox" Height="26"/>
+            <TextBox TextWrapping="Wrap" Width="100" Height="26"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Label Content="Lasttname" Height="26"/>
-            <TextBox TextWrapping="Wrap" Text="TextBox" Height="26"/>
+            <Label Content="Lastname" Height="26"/>
+            <TextBox TextWrapping="Wrap" Width="100" Height="26"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Label Content="Age" Height="26"/>
-            <TextBox TextWrapping="Wrap" Text="TextBox" Height="26"/>
+            <TextBox TextWrapping="Wrap" Width="100" Height="26"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal">
             <Label Content="Gender" Height="26"/>
-            <TextBox TextWrapping="Wrap" Text="TextBox" Height="26"/>
+            <TextBox TextWrapping="Wrap" Width="100" Height="26"/>
         </StackPanel>
         <StackPanel Grid.Row="4" Orientation="Horizontal">
             <Button Content="Apply" Height="26" />

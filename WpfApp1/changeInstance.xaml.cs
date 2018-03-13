@@ -23,6 +23,12 @@ namespace WpfApp1
         public changeInstance()
         {
             InitializeComponent();
+            NavigationService.LoadCompleted += NavigationService_LoadCompleted;
+        }
+        public changeInstance(int val) : this()
+        private void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            string str = (string)e.ExtraData;
         }
     }
 }

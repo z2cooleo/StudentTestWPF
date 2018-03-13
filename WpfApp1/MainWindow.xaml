@@ -19,7 +19,7 @@
         <!--Button-->
         <StackPanel Orientation="Horizontal" Grid.Row="1" >
                 <Button Content="Add" Click="ButtonAdd_Click" />
-                <Button Content="Edit" />
+                <Button Content="Edit" Click="ButtonEdit_Click" />
                 <Button Content="Delete" Click="ButtonDelete_Click"  />
          </StackPanel>
         <!--DataGrid-->
