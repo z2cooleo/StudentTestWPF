@@ -15,24 +15,28 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Xml.Serialization;
 using System.Globalization;
+using System.Windows.Navigation;
 using System.Collections.ObjectModel;
 
 namespace WpfApp1
 {
-    enum Gender{
-        male,
-        female
-    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         Students students;
+        string path = @"D:\OwnCloud\Dev\StudentTestWPF\WpfApp1\WpfApp1\students1.xml";
         public MainWindow()
         {
-            students = File.GetStudents(@"G:\Dev\C#\StudentTestWPF\WpfApp1\students1.xml");
+            students = File.GetStudents(path);
             InitializeComponent();
+        }
+        public MainWindow(Student st) : this()
+        {
+            if (st.ID >= 0) students.Edit(st);
+            else students.Add(st);
+            File.SetStudent(students, path);
         }
         private void Init(object sender, EventArgs e)
         {
@@ -50,20 +54,26 @@ namespace WpfApp1
                     students.Remove(st);
                     StudentsDataGrid.ItemsSource = null;
                     StudentsDataGrid.ItemsSource = students;
-                    File.SetStudent(students, @"G:\Dev\C#\StudentTestWPF\WpfApp1\students1.xml");
+                    File.SetStudent(students, path);
                 }
             }
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            changeInstance setPage = new changeInstance(2);
-            this.NavigationService.Navigate(setPage);            
+            EditWindow ed = new EditWindow();
+            ed.Show();
+            Close();
         }
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-            changeInstance setPage = new changeInstance();
-            this.Content = setPage;
+            Student st = StudentsDataGrid.SelectedItem as Student;
+            if (st != null)
+            {
+                EditWindow ed = new EditWindow(st);
+                ed.Show();
+                Close();
+            }
         }
     }
     public class AddConverter : IMultiValueConverter

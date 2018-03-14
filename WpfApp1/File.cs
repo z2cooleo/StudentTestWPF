@@ -16,30 +16,32 @@ namespace WpfApp1
             Students students = new Students();
 
             XmlDataDocument xmldoc = new XmlDataDocument();
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            xmldoc.Load(fs);
-            XmlNodeList xmlnodes = xmldoc.GetElementsByTagName("Student");
-            foreach (XmlNode xn in xmlnodes)
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
-                Student student = new Student();
-                student.ID = Int32.Parse(xn.Attributes["Id"].Value);
-                foreach (XmlNode node in xn.ChildNodes)
+                xmldoc.Load(fs);
+                XmlNodeList xmlnodes = xmldoc.GetElementsByTagName("Student");
+                foreach (XmlNode xn in xmlnodes)
                 {
-                    switch (node.Name.ToString())
+                    Student student = new Student();
+                    student.ID = Int32.Parse(xn.Attributes["Id"].Value);
+                    foreach (XmlNode node in xn.ChildNodes)
                     {
-                        case "FirstName":
-                            student.FirstName = node.InnerText; break;
-                        case "Last":
-                            student.Last = node.InnerText; break;
-                        case "Age":
-                            student.AgeStudent = Int32.Parse(node.InnerText); break;
-                        case "Gender":
-                            student.GenderStudent = Int32.Parse(node.InnerText); break;
+                        switch (node.Name.ToString())
+                        {
+                            case "FirstName":
+                                student.FirstName = node.InnerText; break;
+                            case "Last":
+                                student.Last = node.InnerText; break;
+                            case "Age":
+                                student.AgeStudent = Int32.Parse(node.InnerText); break;
+                            case "Gender":
+                                student.GenderStudent = Int32.Parse(node.InnerText); break;
+                        }
                     }
+                    students.Add(student);
                 }
-                students.Add(student);                
+                return students;
             }
-            return students;
         }
         static public void SetStudent(Students students, string path)
         {

@@ -31,13 +31,20 @@ namespace WpfApp1
                 students[index] = value;
             }
         }
-        public void Add(Object student)
+        public void Add(Student student)
         {
-            students.Add(student as Student);
+            students.Add(student);
         }
         public void Remove(Student student)
         {
             students.Remove(student);
+        }
+        public void Edit(Student student)
+        {
+            students[student.ID].FirstName = student.FirstName;
+            students[student.ID].Last = student.Last;
+            students[student.ID].AgeStudent = student.AgeStudent;
+            students[student.ID].GenderStudent = student.GenderStudent;
         }
         public void Remove(int indexStudentInstance)
         {

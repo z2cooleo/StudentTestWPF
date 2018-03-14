@@ -54,13 +54,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="changeInstance.xaml.cs">
-      <DependentUpon>changeInstance.xaml</DependentUpon>
+    <Compile Include="Edit.xaml.cs">
+      <DependentUpon>Edit.xaml</DependentUpon>
     </Compile>
     <Compile Include="File.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Students.cs" />
-    <Page Include="changeInstance.xaml">
+    <Page Include="Edit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
