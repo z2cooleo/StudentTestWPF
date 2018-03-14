@@ -26,32 +26,51 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         Students students;
-        string path = @"D:\OwnCloud\Dev\StudentTestWPF\WpfApp1\WpfApp1\students1.xml";
+        string path = @"G:\ownCloud\Dev\StudentTestWPF\WpfApp1\WpfApp1\students.xml";
         public MainWindow()
         {
             students = File.GetStudents(path);
             InitializeComponent();
+            checkCount();
         }
         public MainWindow(Student st) : this()
         {
             if (st.ID >= 0) students.Edit(st);
             else students.Add(st);
             File.SetStudent(students, path);
+            checkCount();
         }
-        private void Init(object sender, EventArgs e)
+        private void checkCount()
+        {
+            if (students.Count == 0)
+            {
+                lblNoDataMessage.Visibility = Visibility.Visible;
+                StudentsDataGrid.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                lblNoDataMessage.Visibility = Visibility.Collapsed;
+                StudentsDataGrid.Visibility = Visibility.Visible;
+            }
+        }
+    private void Init(object sender, EventArgs e)
         {
             StudentsDataGrid.ItemsSource = students;
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            Student st = StudentsDataGrid.SelectedItem as Student;
+            var st = StudentsDataGrid.SelectedItems;
             if (st != null)
             {
                 MessageBoxResult result = MessageBox.Show("Do you want to remove this row?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
-                    students.Remove(st);
+                    foreach (Student i in st)
+                    {
+                        students.Remove(i);
+                        checkCount();
+                    }
                     StudentsDataGrid.ItemsSource = null;
                     StudentsDataGrid.ItemsSource = students;
                     File.SetStudent(students, path);

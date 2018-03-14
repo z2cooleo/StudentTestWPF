@@ -20,30 +20,14 @@
             <Button Content="Delete" Click="ButtonDelete_Click" Width="100"  Margin="10,0"/>
         </StackPanel>
         <!--DataGrid-->
-        <DataGrid x:Name="StudentsDataGrid" ItemsSource="{Binding Source=students}" Grid.Row="2"
-                    AutoGenerateColumns="False" Initialized="Init" AlternationCount="2"
+        <Label x:Name="lblNoDataMessage" Grid.Row="2" Content="No records found" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"/>
+
+        <DataGrid x:Name="StudentsDataGrid" ItemsSource="{Binding Source=students}" Grid.Row="2" 
+                    AutoGenerateColumns="False" Initialized="Init" AlternationCount="2" Margin="5"
                     IsReadOnly="True" ScrollViewer.CanContentScroll="True"
                     RowBackground="#ccff99" AlternatingRowBackground="#99ff99">
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="No Record Found" Width="400"></TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-            <DataGrid.Style>
-                <Style TargetType="DataGrid">
-                    <Setter Property="RowDetailsVisibilityMode" Value="Collapsed"></Setter>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding DataContext.IsRecordExists, 
-                                    RelativeSource={RelativeSource Mode=FindAncestor,
-                                    AncestorType={x:Type WpfApp1:MainWindow}}}" Value="false">
-                            <Setter Property="RowHeight" Value="10"></Setter>
-                            <Setter Property="RowDetailsVisibilityMode" Value="Visible"></Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.Style>
+
+
             <DataGrid.Resources>
                 <WpfApp1:AddConverter x:Key="XAMLResourceAddConverter" />
                 <WpfApp1:AgeConverter x:Key="AgeConverter"/>
@@ -62,5 +46,6 @@
                 <DataGridTextColumn Header="Gender" Width="2*" Binding="{Binding Path=GenderStudent, Converter={StaticResource GenderConverter}}"/>
             </DataGrid.Columns>
         </DataGrid>
+        
     </Grid>
 </Window>
