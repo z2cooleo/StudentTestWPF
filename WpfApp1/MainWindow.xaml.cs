@@ -26,7 +26,7 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         Students students;
-        string path = @"G:\ownCloud\Dev\StudentTestWPF\WpfApp1\WpfApp1\students.xml";
+        string path = @".\students.xml";
         public MainWindow()
         {
             students = File.GetStudents(path);
